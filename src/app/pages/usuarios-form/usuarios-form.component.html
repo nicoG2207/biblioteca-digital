@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h2>{{ esEdicion ? 'Editar' : 'Agregar' }} Usuario</h2>
+
+  <form (ngSubmit)="guardar()" #usuarioForm="ngForm">
+    <div class="form-group mb-3">
+      <label for="nombre">Nombre</label>
+      <input
+        id="nombre"
+        name="nombre"
+        type="text"
+        class="form-control"
+        [(ngModel)]="usuario.nombre"
+        required
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="correo">Correo</label>
+      <input
+        id="correo"
+        name="correo"
+        type="email"
+        class="form-control"
+        [(ngModel)]="usuario.correo"
+        required
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="contrasena">Contraseña</label>
+      <input
+        id="contrasena"
+        name="contrasena"
+        type="password"
+        class="form-control"
+        [(ngModel)]="usuario.contrasena"
+        required
+      />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
+    <a class="btn btn-secondary ms-2" routerLink="/usuarios">Cancelar</a>
+  </form>
+</div>
+
+
