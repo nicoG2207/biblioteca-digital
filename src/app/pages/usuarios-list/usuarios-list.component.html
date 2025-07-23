@@ -18,7 +18,7 @@
         <td>{{ usuario.nombre }}</td>
         <td>{{ usuario.correo }}</td>
         <td>
-          <a [routerLink]="['/usuarios/editar', usuario.id]" class="btn btn-primary btn-sm">Editar</a>
+          <a [routerLink]="['/usuarios/editar', usuario.id]" class="btn btn-sm btn-warning">Editar</a>
           <button class="btn btn-danger btn-sm ms-2" (click)="eliminar(usuario.id!)">Eliminar</button>
         </td>
       </tr>
