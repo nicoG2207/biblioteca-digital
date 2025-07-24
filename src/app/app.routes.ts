@@ -31,7 +31,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./pages/login').then(m => m.LoginComponent)
+      import('./pages/login/login').then(m => m.LoginComponent)
   },
   // Redirecciones
   {
