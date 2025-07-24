@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
 import { UsuariosService } from '../../services/usuarios.service';
 import { Usuario } from '../../models/usuario.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios-form',
@@ -29,10 +28,17 @@ export class UsuariosFormComponent implements OnInit {
     if (id) {
       this.esEdicion = true;
       this.usuariosService.getById(+id).subscribe((data: Usuario) => {
-        this.usuario = data;
+        this.usuario = {
+          id: data.id, // 👈 asegúrate de incluir el ID
+          nombre: data.nombre,
+          correo: data.correo,
+          contrasena: '' // 👈 opcionalmente en blanco por seguridad
+        };
       });
     }
   }
+
+
 
   guardar(): void {
     if (this.esEdicion && this.usuario.id) {
