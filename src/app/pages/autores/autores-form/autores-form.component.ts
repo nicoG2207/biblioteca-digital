@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators  } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import { AutoresService } from '../../../services/autores.service';
 import { Autor } from '../../../models/autor.model';
@@ -10,7 +10,7 @@ import { Autor } from '../../../models/autor.model';
 @Component({
   selector: 'app-autores-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './autores-form.component.html',
   styleUrls: ['./autores-form.component.scss']
 })

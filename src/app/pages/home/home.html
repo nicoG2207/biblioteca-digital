@@ -1,25 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">📚 Biblioteca Digital</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/usuarios">👤 Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/autores">✍️ Autores</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/libros">📘 Libros</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/prestamos">🔄 Préstamos</a>
-        </li>
-      </ul>
+<div class="position-absolute top-50 start-50 translate-middle" style="width: 100%; max-width: 500px;">
+  <div class="card shadow-lg p-4">
+    <div class="card-body text-center">
+      <h2 class="card-title mb-3">📚 Bienvenido a Biblioteca Digital</h2>
+      <p class="card-text">
+        Esta plataforma te permite gestionar usuarios, autores, libros y préstamos de forma sencilla y rápida.
+      </p>
+      <p class="card-text text-muted">
+        Utiliza el menú de navegación superior para acceder a las distintas secciones del sistema.
+      </p>
     </div>
   </div>
-</nav>
-
-<div class="container mt-4">
-  <router-outlet></router-outlet>
 </div>
