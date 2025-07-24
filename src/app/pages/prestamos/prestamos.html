@@ -1,1 +1,59 @@
-<p>prestamos works!</p>
+<div class="container mt-4">
+  <h2>Lista de Préstamos</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Usuario</th>
+        <th>Correo</th>
+        <th>Libro</th>
+        <th>Fecha Préstamo</th>
+        <th>Fecha Devolución</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of prestamos">
+        <td>{{ p.CodigoLibro }}</td>
+        <td>{{ p.nombreUsuario }}</td>
+        <td>{{ p.correoUsuario }}</td>
+        <td>{{ p.nombreLibro }}</td>
+        <td>{{ p.fecha_prestamo | date: 'shortDate' }}</td>
+        <td>{{ p.fecha_devolucion | date: 'shortDate' }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="eliminarPrestamo(p.CodigoLibro)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="mt-5">Agregar Préstamo</h3>
+  <form (ngSubmit)="agregarPrestamo()">
+    <div class="row">
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Código del libro" [(ngModel)]="nuevoPrestamo.CodigoLibro" name="codigo" required />
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Nombre del usuario" [(ngModel)]="nuevoPrestamo.nombreUsuario" name="usuario" required />
+      </div>
+      <div class="col">
+        <input type="email" class="form-control" placeholder="Correo del usuario" [(ngModel)]="nuevoPrestamo.correoUsuario" name="correo" required />
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Nombre del libro" [(ngModel)]="nuevoPrestamo.nombreLibro" name="libro" required />
+      </div>
+      <div class="col">
+        <input type="date" class="form-control" [(ngModel)]="nuevoPrestamo.fecha_prestamo" name="fecha_prestamo" required />
+      </div>
+      <div class="col">
+        <input type="date" class="form-control" [(ngModel)]="nuevoPrestamo.fecha_devolucion" name="fecha_devolucion" required />
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">Guardar</button>
+  </form>
+</div>
