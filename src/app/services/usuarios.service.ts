@@ -19,21 +19,19 @@ export class UsuariosService {
 
   create(usuario: Usuario): Observable<Usuario> {
     const payload = {
-      ...usuario,
-      contraseña: usuario.contrasena // convierte a lo que espera la API
+      nombre: usuario.nombre,
+      correo: usuario.correo,
+      contraseña: usuario.contrasena
     };
-    delete (payload as any).contrasena;
-
     return this.http.post<Usuario>(this.apiUrl, payload);
   }
 
   update(id: number, usuario: Usuario): Observable<void> {
     const payload = {
-      ...usuario,
+      nombre: usuario.nombre,
+      correo: usuario.correo,
       contraseña: usuario.contrasena
     };
-    delete (payload as any).contrasena;
-
     return this.http.put<void>(`${this.apiUrl}/${id}`, payload);
   }
 
@@ -41,4 +39,3 @@ export class UsuariosService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
-
