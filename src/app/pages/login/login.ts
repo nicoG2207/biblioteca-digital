@@ -19,7 +19,7 @@ export class LoginComponent {
   login(): void {
     if (this.usuario.correo === 'admin@admin.com' && this.usuario.contrasena === 'admin') {
       localStorage.setItem('usuarioLogueado', JSON.stringify(this.usuario));
-      this.router.navigate(['/home']);
+      this.router.navigate(['/usuarios']);
     } else {
       this.error = true;
     }
