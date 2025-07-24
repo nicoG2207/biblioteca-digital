@@ -16,11 +16,19 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/usuarios-form/usuarios-form.component').then(m => m.UsuariosFormComponent)
   },
+  // Rutas autores
+  {
+    path: 'autores',
+    loadChildren: () =>
+      import('./pages/autores/autores.routes').then(m => m.AUTORE_ROUTES)
+  },
+  // Ruta login
   {
     path: 'login',
     loadComponent: () =>
       import('./pages/login').then(m => m.LoginComponent)
   },
+  // Redirecciones
   {
     path: '',
     redirectTo: 'login',

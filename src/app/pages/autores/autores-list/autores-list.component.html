@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2>📚 Lista de Autores</h2>
+
+  <a routerLink="/autores/nuevo" class="btn btn-success mb-3">➕ Nuevo Autor</a>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Nacionalidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let autor of autores">
+        <td>{{ autor.id }}</td>
+        <td>{{ autor.nombre }}</td>
+        <td>{{ autor.nacionalidad }}</td>
+        <td>
+          <a [routerLink]="['/autores/editar', autor.id]" class="btn btn-primary btn-sm me-2">Editar</a>
+          <button class="btn btn-danger btn-sm" (click)="eliminarAutor(autor.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
