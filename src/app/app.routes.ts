@@ -1,6 +1,17 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [  
+    {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login').then(m => m.LoginComponent)
+  },
+
   {
     path: '',
     loadComponent: () =>
@@ -29,25 +40,17 @@ export const routes: Routes = [
       //{
       //  path: 'libros',
       //  loadComponent: () =>
-      //    import('./pages/libros/libros-list.component').then(m => m.LibrosListComponent) // ejemplo
+      //    import('./pages/libros/libros-list.component').then(m => m.LibrosListComponent) 
       //},
       {
         path: 'prestamos',
         loadComponent: () =>
-          import('./pages/prestamos/prestamos').then(m => m.PrestamosComponent) // ejemplo
-      },
-      {
-        path: '',
-        redirectTo: 'usuarios',
-        pathMatch: 'full'
+          import('./pages/prestamos/prestamos').then(m => m.PrestamosComponent) 
       }
+
     ]
   },
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./pages/login/login').then(m => m.LoginComponent)
-  },
+
   {
     path: '**',
     redirectTo: 'login'
