@@ -1,1 +1,39 @@
-<p>autores-form works!</p>
+<div class="container mt-4">
+  <h2>{{ idAutor ? '✏️ Editar Autor' : '➕ Nuevo Autor' }}</h2>
+
+  <form [formGroup]="autorForm" (ngSubmit)="guardar()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input
+        id="nombre"
+        type="text"
+        class="form-control"
+        formControlName="nombre"
+        [class.is-invalid]="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched"
+      />
+      <div class="invalid-feedback" *ngIf="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="nacionalidad" class="form-label">Nacionalidad:</label>
+      <input
+        id="nacionalidad"
+        type="text"
+        class="form-control"
+        formControlName="nacionalidad"
+        [class.is-invalid]="autorForm.get('nacionalidad')?.invalid && autorForm.get('nacionalidad')?.touched"
+      />
+      <div class="invalid-feedback" *ngIf="autorForm.get('nacionalidad')?.invalid && autorForm.get('nacionalidad')?.touched">
+        La nacionalidad es obligatoria.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="autorForm.invalid">
+      {{ idAutor ? 'Guardar Cambios' : 'Crear Autor' }}
+    </button>
+
+    <a routerLink="/autores" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
