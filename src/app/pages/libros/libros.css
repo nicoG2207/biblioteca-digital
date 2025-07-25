@@ -1,0 +1,16 @@
+.main {
+background: #d1d1d1;
+background: linear-gradient(90deg,
+ rgba(209, 209, 209, 1) 12%,
+  rgba(81, 79, 105, 1) 33%,
+   rgba(77, 77, 69, 1) 59%,
+    rgba(117, 62, 87, 1) 78%,
+     rgba(96, 72, 107, 1) 100%);
+    min-height: 100vh; 
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.table {
+    border-color: #444;
+}

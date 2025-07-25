@@ -1,0 +1,35 @@
+<div class="bg-black text-white min-vh-100 d-flex align-items-center justify-content-center"> <!--FONDO NEGROOOPOOOOOO-->
+
+  <div class="container" data-bs-theme="dark">
+    
+    <div class="text-center mb-4">
+      <h1>Biblioteca Digital</h1>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>{{ editMode ? 'Editar Libro' : 'Agregar Nuevo Libro' }}</h3>
+      </div>
+      <div class="card-body">
+        <form #libroForm="ngForm" (ngSubmit)="onSubmit(libroForm)"> 
+          <div class="form-group mb-3">
+            <label for="titulo">Título del libro a Editar</label>
+            <input type="text" class="form-control" name="titulo" [(ngModel)]="libro.titulo" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="id_autor">ID del Autor A cambiar</label> <!--Enrutamiento segun ID del libroo -->
+            <input type="number" class="form-control" name="id_autor" [(ngModel)]="libro.id_autor" required>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="libroForm.invalid">
+            {{ editMode ? 'Actualizar' : 'Guardar' }}
+          </button>
+          <a routerLink="/libros" class="btn btn-secondary ms-2">Cancelar Edición del Libro</a>
+        </form>
+      </div>
+       <div class="card-footer text-muted text-center">
+        Front-end
+      </div>
+    </div>
+  </div>
+  
+</div>
