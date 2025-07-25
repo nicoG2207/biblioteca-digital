@@ -1,39 +1,53 @@
 <div class="container mt-4">
-  <h2>{{ idAutor ? '✏️ Editar Autor' : '➕ Nuevo Autor' }}</h2>
-
-  <form [formGroup]="autorForm" (ngSubmit)="guardar()">
-    <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre:</label>
-      <input
-        id="nombre"
-        type="text"
-        class="form-control"
-        formControlName="nombre"
-        [class.is-invalid]="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched"
-      />
-      <div class="invalid-feedback" *ngIf="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched">
-        El nombre es obligatorio.
-      </div>
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white border-bottom-0">
+      <h4 class="fw-bold mb-0">
+        <i class="bi bi-person-plus-fill me-2 text-primary"></i>
+        {{ idAutor ? 'Editar Autor ✏️' : 'Nuevo Autor ➕' }}
+      </h4>
     </div>
 
-    <div class="mb-3">
-      <label for="nacionalidad" class="form-label">Nacionalidad:</label>
-      <input
-        id="nacionalidad"
-        type="text"
-        class="form-control"
-        formControlName="nacionalidad"
-        [class.is-invalid]="autorForm.get('nacionalidad')?.invalid && autorForm.get('nacionalidad')?.touched"
-      />
-      <div class="invalid-feedback" *ngIf="autorForm.get('nacionalidad')?.invalid && autorForm.get('nacionalidad')?.touched">
-        La nacionalidad es obligatoria.
-      </div>
+    <div class="card-body">
+      <form [formGroup]="autorForm" (ngSubmit)="guardar()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold">Nombre</label>
+          <input
+            id="nombre"
+            type="text"
+            class="form-control"
+            formControlName="nombre"
+            [class.is-invalid]="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched"
+          />
+          <div class="invalid-feedback" *ngIf="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched">
+            El nombre es obligatorio.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="nacionalidad" class="form-label fw-semibold">Nacionalidad</label>
+          <input
+            id="nacionalidad"
+            type="text"
+            class="form-control"
+            formControlName="nacionalidad"
+            [class.is-invalid]="autorForm.get('nacionalidad')?.invalid && autorForm.get('nacionalidad')?.touched"
+          />
+          <div class="invalid-feedback" *ngIf="autorForm.get('nacionalidad')?.invalid && autorForm.get('nacionalidad')?.touched">
+            La nacionalidad es obligatoria.
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <button type="submit" class="btn btn-success me-2" [disabled]="autorForm.invalid">
+            <i class="bi bi-save-fill me-1"></i>
+            {{ idAutor ? 'Guardar Cambios' : 'Crear Autor' }}
+          </button>
+
+          <a routerLink="/autores" class="btn btn-outline-secondary">
+            <i class="bi bi-x-circle me-1"></i> Cancelar
+          </a>
+        </div>
+      </form>
     </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="autorForm.invalid">
-      {{ idAutor ? 'Guardar Cambios' : 'Crear Autor' }}
-    </button>
-
-    <a routerLink="/autores" class="btn btn-secondary ms-2">Cancelar</a>
-  </form>
+  </div>
 </div>

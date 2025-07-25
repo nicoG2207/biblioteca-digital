@@ -42,11 +42,6 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./pages/autores/autores.routes').then(m => m.AUTORE_ROUTES)
       },
-      //{
-      //  path: 'libros',
-      //  loadComponent: () =>
-      //    import('./pages/libros/libros-list.component').then(m => m.LibrosListComponent) 
-      //},
       {
         path: 'prestamos',
         loadComponent: () =>
