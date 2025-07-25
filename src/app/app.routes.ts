@@ -51,7 +51,22 @@ export const routes: Routes = [
         path: 'prestamos',
         loadComponent: () =>
           import('./pages/prestamos/prestamos').then(m => m.PrestamosComponent) 
-      }
+      },
+        {
+    path: 'libros',
+    loadComponent: () => import('./pages/libros/libros')
+                          .then(m => m.Libros)
+  },
+  {
+    path: 'libros/agregar',
+    loadComponent: () => import('./pages/libros/crud-libros/crud-libros')
+                          .then(m => m.CrudLibros)
+  },
+  {
+    path: 'libros/editar/:id',
+    loadComponent: () => import('./pages/libros/crud-libros/crud-libros')
+                          .then(m => m.CrudLibros)
+  },
 
     ]
   },
