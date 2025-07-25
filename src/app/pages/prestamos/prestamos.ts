@@ -1,11 +1,10 @@
-// src/app/pages/prestamos/prestamos.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { PrestamosService } from '../../services/prestamos.service';
 import { Prestamo } from '../../models/prestamo.model';
-
-
+import { PrestamoCreate } from '../../models/prestamo-create.model';
 
 @Component({
   selector: 'app-prestamos',
@@ -14,13 +13,13 @@ import { Prestamo } from '../../models/prestamo.model';
   templateUrl: './prestamos.html',
   styleUrls: ['./prestamos.scss']
 })
+
 export class PrestamosComponent implements OnInit {
   prestamos: Prestamo[] = [];
-  nuevoPrestamo: Prestamo = {
-    CodigoLibro: 0,
-    nombreUsuario: '',
-    correoUsuario: '',
-    nombreLibro: '',
+
+  nuevoPrestamo: PrestamoCreate = {
+    id_usuario: 0,
+    id_libro: 0,
     fecha_prestamo: '',
     fecha_devolucion: ''
   };
@@ -32,31 +31,33 @@ export class PrestamosComponent implements OnInit {
   }
 
   cargarPrestamos(): void {
-    this.prestamosService.getAll().subscribe(data => {
-      this.prestamos = data;
+    this.prestamosService.getPrestamos().subscribe({
+      next: (data) => {
+        this.prestamos = data;
+      },
+      error: (err) => {
+        console.error('Error al cargar préstamos:', err);
+      }
     });
   }
 
   agregarPrestamo(): void {
-    const prestamoFormateado: Prestamo = {
-      ...this.nuevoPrestamo,
-      fecha_prestamo: new Date(this.nuevoPrestamo.fecha_prestamo).toISOString(),
-      fecha_devolucion: new Date(this.nuevoPrestamo.fecha_devolucion).toISOString()
-    };
-
-    this.prestamosService.create(prestamoFormateado).subscribe(() => {
-      this.cargarPrestamos(); // Refresca la lista
-      this.nuevoPrestamo = {
-        CodigoLibro: 0,
-        nombreUsuario: '',
-        correoUsuario: '',
-        nombreLibro: '',
-        fecha_prestamo: '',
-        fecha_devolucion: ''
-      };
+    this.prestamosService.create(this.nuevoPrestamo).subscribe({
+      next: () => {
+        this.cargarPrestamos(); // Refresca la lista
+        this.nuevoPrestamo = {
+          id_usuario: 0,
+          id_libro: 0,
+          fecha_prestamo: '',
+          fecha_devolucion: ''
+        };
+      },
+      error: (err) => {
+        console.error('Error al agregar préstamo:', err);
+        alert('Ocurrió un error al agregar el préstamo. Verifica los datos.');
+      }
     });
   }
-
 
   eliminarPrestamo(codigo: number): void {
     if (confirm('¿Estás seguro de eliminar este préstamo?')) {

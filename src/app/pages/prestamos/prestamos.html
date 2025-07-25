@@ -1,10 +1,9 @@
 <div class="container mt-4">
-  <h2>Lista de Préstamos</h2>
+  <h2 class="mb-4">📚 Lista de Préstamos</h2>
 
-  <table class="table table-striped">
-    <thead>
+  <table class="table table-striped align-middle text-center">
+    <thead class="table-light">
       <tr>
-        <th>Código</th>
         <th>Usuario</th>
         <th>Correo</th>
         <th>Libro</th>
@@ -15,45 +14,48 @@
     </thead>
     <tbody>
       <tr *ngFor="let p of prestamos">
-        <td>{{ p.CodigoLibro }}</td>
         <td>{{ p.nombreUsuario }}</td>
         <td>{{ p.correoUsuario }}</td>
         <td>{{ p.nombreLibro }}</td>
         <td>{{ p.fecha_prestamo | date: 'shortDate' }}</td>
         <td>{{ p.fecha_devolucion | date: 'shortDate' }}</td>
         <td>
-          <button class="btn btn-danger btn-sm" (click)="eliminarPrestamo(p.CodigoLibro)">Eliminar</button>
+          <button
+            class="btn btn-danger btn-sm rounded-circle d-flex align-items-center justify-content-center mx-auto"
+            title="Eliminar préstamo"
+            style="width: 34px; height: 34px"
+            (click)="eliminarPrestamo(p.CodigoLibro)">
+            <i class="bi bi-trash-fill fs-6 text-white"></i>
+          </button>
         </td>
+      </tr>
+      <tr *ngIf="prestamos.length === 0">
+        <td colspan="6" class="text-center text-muted py-3">No hay préstamos registrados.</td>
       </tr>
     </tbody>
   </table>
 
-  <h3 class="mt-5">Agregar Préstamo</h3>
-  <form (ngSubmit)="agregarPrestamo()">
-    <div class="row">
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Código del libro" [(ngModel)]="nuevoPrestamo.CodigoLibro" name="codigo" required />
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Nombre del usuario" [(ngModel)]="nuevoPrestamo.nombreUsuario" name="usuario" required />
-      </div>
-      <div class="col">
-        <input type="email" class="form-control" placeholder="Correo del usuario" [(ngModel)]="nuevoPrestamo.correoUsuario" name="correo" required />
-      </div>
-    </div>
+  <hr />
 
-    <div class="row mt-2">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Nombre del libro" [(ngModel)]="nuevoPrestamo.nombreLibro" name="libro" required />
-      </div>
-      <div class="col">
-        <input type="date" class="form-control" [(ngModel)]="nuevoPrestamo.fecha_prestamo" name="fecha_prestamo" required />
-      </div>
-      <div class="col">
-        <input type="date" class="form-control" [(ngModel)]="nuevoPrestamo.fecha_devolucion" name="fecha_devolucion" required />
-      </div>
+  <h4 class="mt-4">➕ Agregar Préstamo</h4>
+<form (ngSubmit)="agregarPrestamo()">
+  <div class="row">
+    <div class="col">
+      <input type="number" class="form-control" placeholder="ID Usuario" [(ngModel)]="nuevoPrestamo.id_usuario" name="usuario" required />
+      <div class="form-text text-center">ID Usuario</div>
     </div>
-
-    <button class="btn btn-primary mt-3" type="submit">Guardar</button>
-  </form>
-</div>
+    <div class="col">
+      <input type="number" class="form-control" placeholder="ID Libro" [(ngModel)]="nuevoPrestamo.id_libro" name="libro" required />
+      <div class="form-text text-center">ID Libro</div>
+    </div>
+    <div class="col">
+      <input type="date" class="form-control" [(ngModel)]="nuevoPrestamo.fecha_prestamo" name="fecha_prestamo" required />
+      <div class="form-text text-center">Fecha Préstamo</div>
+    </div>
+    <div class="col">
+      <input type="date" class="form-control" [(ngModel)]="nuevoPrestamo.fecha_devolucion" name="fecha_devolucion" required />
+      <div class="form-text text-center">Fecha Devolución</div>
+    </div>
+  </div>
+  <button class="btn btn-primary mt-3" type="submit">Guardar</button>
+</form>
